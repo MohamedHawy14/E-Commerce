@@ -9,12 +9,12 @@ namespace E_Commerce.Core.Sharing
     public class ProductParams
     {
         //string sort, int? CategoryId, int pageSize, int PageNumber
-        public string Sort { get; set; }
+        public string? Sort { get; set; }
         public int? CategoryId { get; set; }
 
         public int TotatlCount { get; set; }
 
-        public string Search { get; set; }
+        public string? Search { get; set; }
         public int MaxPageSize { get; set; } = 6;
         private int _pageSize = 3;
 
