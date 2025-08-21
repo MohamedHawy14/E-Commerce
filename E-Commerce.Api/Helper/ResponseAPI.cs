@@ -2,24 +2,29 @@
 {
     public class ResponseAPI
     {
-        public ResponseAPI(int statusCode, string message = null)
+        public ResponseAPI(int statusCode, string? message = null, object? data = null)
         {
             StatusCode = statusCode;
-            Message = message ?? GetMessageFormStatusCode(StatusCode);
+            Message = message ?? GetMessageFromStatusCode(StatusCode);
+            Data = data;
         }
-        private string GetMessageFormStatusCode(int statuscode)
+
+        private string GetMessageFromStatusCode(int statusCode)
         {
-            return statuscode switch
+            return statusCode switch
             {
                 200 => "Done",
                 400 => "Bad Request",
-                401 => "Un Authorized",
-                404 => "resource not found",
-                500 => "server Error",
-                _ => null,
+                401 => "Unauthorized",
+                404 => "Resource Not Found",
+                500 => "Server Error",
+                _ => "Unknown Error",
             };
         }
+
         public int StatusCode { get; set; }
         public string? Message { get; set; }
+        public object? Data { get; set; } 
     }
+
 }

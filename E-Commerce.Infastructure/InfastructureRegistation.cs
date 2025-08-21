@@ -20,7 +20,8 @@ namespace E_Commerce.Infastructure
         {
             services.AddScoped(typeof(IgenricRepository<>), typeof(genricRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddDbContext<ApplicationDbContext>(op=>op.UseSqlServer(configuration.GetConnectionString("Cs")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("Cs")));
             services.AddSingleton<IImageManagementService, ImageManagementService>();
             services.AddSingleton<IFileProvider>(
                 new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
